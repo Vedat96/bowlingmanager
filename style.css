@@ -1,0 +1,9 @@
+html{background-color: black}
+.inner{
+	background-color: #ddd;
+	padding:15px;
+	border-radius: 20px;
+	text-align: center;
+	width:20%;
+	margin: auto;
+}

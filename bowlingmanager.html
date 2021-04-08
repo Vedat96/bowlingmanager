@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Bowlingmanager</title>
+</head>
+<body>
+    <div class="inner">
+    <script type="text/javascript">
+         var team1 = [
+            {name: "Alex", score: 0, team: 1},                                // spelers in een array
+            {name: "Ben", score: 0, team: 1},
+            {name: "Chloe", score: 0, team: 1},
+            {name: "Deen", score: 0, team: 1}
+        ];
+
+        var team2 = [
+            {name: "Edward", score: 0, team: 2},
+            {name: "Francis", score: 0, team: 2},
+            {name: "Gerard", score: 0, team: 2},
+            {name: "Hendrik", score: 0, team: 2}
+        ];
+
+        function pins1(i){     // er is een functie gemaakt omdat ik het weer ga gebruiken, voor team 1
+            var x = Math.floor(Math.random()*11);      //random getal onder de 10, x is de eerste gooi
+            var y = Math.floor(Math.random()*(11 - x)); 	//random getal onder 10 - x, x is wat er eerder is gegooid
+
+            console.log(team1[i].name);    //logt de naam van de team die aan de beurt is, dus team 1
+            document.write(team1[i].name);   
+            document.write("<br>"); 
+                                  
+
+            team1[i].score += x + y;     // totale score is x + y dus eerste en tweede schot bij elkaar
+
+            if (x == 10){
+                console.log("Hot damn! " + team1[i].name  + " threw a strike!");
+                document.write("Hot damn! " + team1[i].name  + " threw a strike!");  // als hij bij zijn eerste keer 10 gooit heeft hij strike. dan kan hij niet meer gooien
+                console.log("");
+                document.write("<br>"); 
+            }
+            else{
+                console.log(team1[i].name + " threw over " + x + " on his first throw");
+                document.write(team1[i].name + " threw over " + x + " on his first throw");
+                document.write("<br>"); 
+ // als hij geen strike heeft gooit hij nog een keer. de y is al boven berekend.
+                console.log(team1[i].name + " threw over " + y + " on his second throw");
+                document.write(team1[i].name + " threw over " + y + " on his second throw");
+                document.write("<br>"); 
+ // als hij geen strike heeft gooit hij nog een keer. de y is al boven berekend.
+                console.log("That makes a total of " + (x + y)  + " pins knocked over");
+                document.write("That makes a total of " + (x + y)  + " pins knocked over");
+                document.write("<br>"); 
+ // de totale score is x en y bij elkaar, de twee shoten. dat kan maximaal 10 zijn. 
+                console.log("");
+                document.write("<br>"); 
+            }
+        }
+
+        function pins2(i){     // dit is de functie die ik eerder heb ggebruikt maar dan voor team 2
+            var x = Math.floor(Math.random()*11);       //random getal onder de 10, x is de eerste gooi
+            var y = Math.floor(Math.random()*(11 - x));    //random getal onder 10 - x, x is wat er eerder is gegooid
+
+            console.log(team2[i].name); 
+            document.write  (team2[i].name); //logt de naam van de team die aan de beurt is, dus team 2
+            document.write("<br>")
+            team2[i].score += x + y;   // totale score is x + y dus eerste en tweede schot bij elkaar
+
+            if (x == 10){
+                console.log("Hot damn! " + team2[i].name  + " threw a strike!");
+                document.write("Hot damn! " + team2[i].name  + " threw a strike!"); // als hij bij zijn eerste keer 10 gooit heeft hij strike. dan kan hij niet meer gooien
+                console.log("");
+                document.write("<br>"); 
+
+            }
+            else{
+                console.log(team2[i].name + " threw over " + x + " on his first throw");
+                document.write(team2[i].name + " threw over " + x + " on his first throw");
+                document.write("<br>"); 
+ // als hij geen strike heeft gooit hij nog een keer. de y is al boven berekend.
+                console.log(team2[i].name + " threw over " + y + " on his second throw");
+                document.write(team2[i].name + " threw over " + y + " on his second throw");
+                document.write("<br>"); 
+ // als hij geen strike heeft gooit hij nog een keer. de y is al boven berekend.
+                console.log("That makes a total of " + (x + y)  + " pins knocked over");
+                document.write("That makes a total of " + (x + y)  + " pins knocked over");
+                document.write("<br>"); 
+ // de totale score is x en y bij elkaar, de twee shoten. dat kan maximaal 10 zijn. 
+                console.log("");
+                document.write("<br>"); 
+                                            // leeg ruimte
+            }
+        }
+
+        for(rounds = 1; rounds < 11; rounds++){                  // er zijn 10 rondes gemaakt, elke keer komt er 1 bijm het begint bij 1 eindigt op 10
+            console.log("Round: " + rounds);
+            console.log("")
+            document.write("Round: " + rounds); 
+            document.write("<br> ");                     // log en write de round
+            
+
+            for(i = 0; i < 4; i++){                           	  //de spelers van team 1 eerst
+                pins1(i);
+            }
+            for(i = 0; i < 4; i++){             	             //de spelers van team 2 daarna
+                pins2(i);
+            }
+        }
+
+        
+
+        for(i = 0; i < 4; i++){     
+            console.log(team1[i].name + " has scored " + team1[i].score);
+            document.write(team1[i].name + "  has scored " + team1[i].score);              //deze twee loops zijn alleen om daarna de winner te laten zien, speler + score
+            console.log(" ")
+        	document.write("<br>"); 
+        }
+       
+        for(i = 0; i < 4; i++){     
+            console.log(team2[i].name + " has scored " + team2[i].score);
+            document.write(team2[i].name + " has scored " + team2[i].score);
+            console.log(" ")
+        	document.write("<br>"); 
+        }
+        
+        var winner = Math.max(team1[0].score, team1[1].score, team1[2].score, team1[3].score, team2[0].score, team2[1].score, team2[2].score, team2[3].score);
+                                                                            //met max.math kijk ik naar de hoogtse score in totaal, daarmee zie je de score van de winner
+        if (winner === 100) {                                               //een alert bij een perfecte spel, dus elke ronde een 10
+         alert(" PERFECTOO");
+        }
+        
+        if (winner === team1[0].score) {
+            alert(team1[0].name + " of team " + team1[0].team + " has won with " + team1[0].score + " points. ");
+        }
+        if (winner === team1[1].score) {
+            alert(team1[1].name + " of team " + team1[1].team + " has won with " + team1[1].score + " points. ");
+        }
+        if (winner === team1[2].score) {
+            alert(team1[2].name + " of team " + team1[2].team + " has won with " + team1[2].score + " points. ");
+        }
+        if (winner === team1[3].score) {
+            alert(team1[3].name + " of team " + team1[3].team + " has won with " + team1[3].score + " points. ");
+        }
+        if (winner === team2[0].score) {
+            alert(team1[0].name + " of team " + team1[0].team + " has won with " + team1[0].score + " points. ");
+        }
+        if (winner === team2[1].score) {
+            alert(team1[1].name + " of team " + team1[1].team + " has won with " + team1[1].score + " points. ");
+        }
+        if (winner === team2[2].score) {
+            alert(team1[2].name + " of team " + team1[2].team + " has won with " + team1[2].score + " points. ");
+        }
+        if (winner === team2[3].score) {
+            alert(team1[3].name + " of team " + team1[3].team + " has won with " + team1[3].score + " points. ");
+        }
+                                                                                //alerts bij elke refresh, de winner met zijn behaalde punten.
+    </script>
+    </div>
+</body>
+</html>
